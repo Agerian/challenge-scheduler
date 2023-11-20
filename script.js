@@ -62,7 +62,24 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
 
-  //
+  // Tetrieve from local storage
+    $(".time-block").each(function () {
+      var currentHour = 
+        $(this) // Current time block being processed
+          .attr("id");  // Retrieve the id of the current time block
+      var storedEvent = localStorage.
+        getItem(currentHour); // Retrieves the stored event description associated with the current time block
+
+        if (storedEvent) {
+          $(this) // Refers to the storedEvent
+            .find(".description") // Targets the specific textarea element within the current time block
+              .val(storedEvent) // Sets the value of the textarea to the stored event description from local storage
+        }
+    });
 
   // TODO: Add code to display the current date in the header of the page.
+
+  // Display the current date
+  $("#currentDay").text(dayjs().format("dddd, MMMM DD, YYYY"));
+  console.log(dayjs().format("dddd, MMMM D, YYYY"));
 });
